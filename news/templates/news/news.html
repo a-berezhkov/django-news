@@ -1,0 +1,43 @@
+{% extends "main/layout.html" %}
+
+{% block content %}
+    {% for i in news %}
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="box">
+                    <div class="box-icon">
+                        <span class="fa fa-4x fa-html5"></span>
+                    </div>
+                    <div class="info">
+                        <h4 class="text-center">{{ i.title }}</h4>
+                        <p> {{ i.body }}</p>
+                        <span class="badge bg-success">{{ i.date | date:"d-m-Y" }}</span>
+                           <a href="/news/find/{{ i.user.username }}"> <span class="badge bg-success">{{ i.user.username}}</span> </a>
+                        <a href="/news/{{ i.id }}" class="btn">Читать....</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    {% endfor %}
+    {% block pagination %}
+        {% if is_paginated %}
+            <div class="pagination">
+          <span class="page-links">
+              {% if page_obj.has_previous %}
+                  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+              {% endif %}
+              <span class="page-current">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+              </span>
+              {% if page_obj.has_next %}
+                  <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+              {% endif %}
+          </span>
+            </div>
+        {% endif %}
+    {% endblock %}
+{% endblock %}

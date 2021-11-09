@@ -1,0 +1,11 @@
+{% extends "main/layout.html" %}
+
+{% block content %}
+    <h1>Создание новости</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <span > {{ error }}</span>
+        <button class="btn btn-success" type="submit">Отправить</button>
+    </form>
+{% endblock %}

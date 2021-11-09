@@ -1,0 +1,12 @@
+{% extends "main/layout.html" %}
+
+{% block content %}
+   {%  for news in object_list %}
+        {{ news.date  }}
+       {{ news.user }}
+       <br>
+        {{ news.body }}
+       <br>
+    {% endfor %}
+
+{% endblock %}
